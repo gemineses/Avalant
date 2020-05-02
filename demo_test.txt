@@ -1,0 +1,9 @@
+id : "A086",
+name: "Password",
+actions:[
+	{
+		sequence: 0,
+		typeAction: "openChat",
+		values: "Do you have a password?(Press t to write)"
+	}
+]
