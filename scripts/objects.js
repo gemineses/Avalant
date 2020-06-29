@@ -10,13 +10,25 @@ var players = {
 				speed: 1, // TODO: Set speed based on movements per seconds instead of movements per frame	
 			},
 			senses: {
-				viewPosition: 0, // 0 to 360, 0 right, 90 up, 180 left, 270 down
-				viewZoom: {
-					close: 10,
-					near: 20,
-					far: 50
-				},
-				excitementValue: 0 // evaluates the interest for him actual route
+				visual: {
+					/*
+						8 direcciones
+						45 es una posicion
+						0 = ->
+						90 = ^
+						180 = <-
+						270 = abajo
+					*/
+					viewRotacion: 0, 
+					viewLenght: 10,
+					viewZoom: {
+						close: 10,
+						near: 20,
+						far: 50
+					},
+					excitementValue: 0 // evaluates the interest for him actual route
+				}
+				
 			}
 			
 		}

@@ -9,8 +9,8 @@ function setCharacters(){
 			x : players.me[index].x,
 			y : players.me[index].y,
 			name: players.me[index].name,
-			speed: players.me[index].properties.speed
-			
+			speed: players.me[index].properties.speed,
+			cones: []
 		});
 	}
 	for(index = 0; index < players.ia.length; index++){
@@ -18,8 +18,8 @@ function setCharacters(){
 			x : players.ia[index].x,
 			y : players.ia[index].y,
 			name: players.ia[index].name,
-			speed: players.ia[index].properties.speed
-			
+			speed: players.ia[index].properties.speed,
+			cones: []
 		});
 	}
 }
@@ -60,9 +60,13 @@ function moveCharacters(){
 		if(charactersList[index].y == mousePosition.y){
 			moving.y = false;
 		}
+
+		let thisCone = new Cone(3, 0, 0, 0, 'red');
+		thisCone.print();
 	}
 }
 
 function move(caracter, upDown, speed){
 	return caracter + (speed * upDown)
 }
+
