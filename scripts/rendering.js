@@ -61,8 +61,6 @@ function moveCharacters(){
 			moving.y = false;
 		}
 
-		let thisCone = new Cone(3, 0, 0, 0, 'red');
-		thisCone.print();
 	}
 }
 
