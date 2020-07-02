@@ -156,6 +156,15 @@ function printCharacters(){
 	}
 }
 
+function printRealObjects(canvasContext){
+	printPlayer(canvasContext);
+}
+
+function printPlayer(canvasContext){
+	players.forEach(function(player){
+		player.draw(canvasContext);
+	});
+}
 /* End of print Map */
 
 /*
@@ -178,7 +187,9 @@ function paintUI(){
 }
 function paintGame(){
 	moveCharacters();
-	printCharacters();
+	//printCharacters();
+	gameArea.clear.game();
+	printRealObjects(gameArea.canvasGameContext);
 }
 
 

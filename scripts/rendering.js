@@ -24,7 +24,32 @@ function hardMove(x, y){
 }
 
 function moveCharacters(){
-	for(characterIndex = 0; characterIndex < 1; characterIndex++){
+	players.forEach(function(player){
+		if(!player.GetIsPlayable()){
+			return 0;
+		}
+		let movingTo = {x: player.GetPositionX(), y: player.GetPositionY()};
+		if(player.GetPositionX() == mousePosition.x && player.GetPositionY() == mousePosition.y){
+			isRequiredMoveCharacter = false;
+		}
+		tmpSpeed = player.GetSpeed();
+
+		if(player.GetPositionX() > mousePosition.x){
+			movingTo.x = move(player.GetPositionX(), -1, tmpSpeed)
+		} else{
+			movingTo.x = move(player.GetPositionX(), 1, tmpSpeed)
+		}
+		
+		if(player.GetPositionY() > mousePosition.y){
+			movingTo.y = move(player.GetPositionY(), -1, tmpSpeed)
+		} else{
+			movingTo.y = move(player.GetPositionY(), 1, tmpSpeed)
+		}
+
+		player.generateObject(movingTo.x, movingTo.y);
+	});
+
+	/*for(characterIndex = 0; characterIndex < 1; characterIndex++){
 		if(charactersList[characterIndex].x == mousePosition.x && charactersList[characterIndex].y == mousePosition.y){
 			isRequiredMoveCharacter = false;
 		}
@@ -51,7 +76,7 @@ function moveCharacters(){
 		if(charactersList[characterIndex].y == mousePosition.y){
 			moving.y = false;
 		}
-	}
+	}*/
 }
 
 function move(caracter, upDown, speed){

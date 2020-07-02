@@ -8,7 +8,7 @@ class CharactersI {
     #speed = 1;
     #senses = new SensesI();
     #isObjectReady = false;
-    
+    #isPlayable = false;
 
     constructor(ID, NAME){
         this.#id = ID;
@@ -20,6 +20,7 @@ class CharactersI {
     GetPositionY(){ if(this.validateObjectReadyToBePrinted) return this.#positionY; }
     GetName(){ if(this.validateObjectReadyToBePrinted) return this.#name; }
     GetSpeed(){ if(this.validateObjectReadyToBePrinted) return this.#speed; }
+    GetIsPlayable(){return this.#isPlayable;}
     /*  END Getters & Setters */
 
     generateObject = function(){
@@ -34,18 +35,31 @@ class CharactersI {
         this.#sprite = new SpriteI();
     }
 
+    makePlayable(){
+        this.#isPlayable = true;
+    }
+
     validateObjectReadyToBePrinted = function(){
         if(this.#positionX === undefined) this.#isObjectReady = false;
         if(this.#positionX === undefined) this.#isObjectReady = false;
         if(this.#speed === undefined) this.#isObjectReady = false;
-        if(this.#sprite === undefined) this.#isObjectReady = false;
+        //if(this.#sprite === undefined) this.#isObjectReady = false;
         this.#isObjectReady = true;
     }
 
     
-    draw = function(){
+    draw = function(ctx){
+        this.validateObjectReadyToBePrinted();
         if(this.#isObjectReady){
+            ctx = gameArea.canvasGameContext;
+            ctx.fillStyle = "black";
+            ctx.font = 12 + "px Arial";
             
+            ctx.fillText("0", this.#positionX, this.#positionY);
+            ctx.fillText(this.#name, 
+                (this.#positionX - 12/2),
+                (this.#positionY - 12));
+        
         }
         return false;
     }
