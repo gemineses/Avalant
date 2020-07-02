@@ -4,22 +4,13 @@ var moving = {x: false, y: false}
 var charactersList = [];
 
 function setCharacters(){
-	for(index = 0; index < players.me.length; index++){
+	for(characterIndex = 0; characterIndex < players.length; characterIndex++){
 		charactersList.push({
-			x : players.me[index].x,
-			y : players.me[index].y,
-			name: players.me[index].name,
-			speed: players.me[index].properties.speed,
-			cones: []
-		});
-	}
-	for(index = 0; index < players.ia.length; index++){
-		charactersList.push({
-			x : players.ia[index].x,
-			y : players.ia[index].y,
-			name: players.ia[index].name,
-			speed: players.ia[index].properties.speed,
-			cones: []
+			x : players[characterIndex].GetPositionX(),
+			y : players[characterIndex].GetPositionY(),
+			name: players[characterIndex].GetName(),
+			speed: players[characterIndex].GetSpeed()
+			//cones: []
 		});
 	}
 }
@@ -33,34 +24,33 @@ function hardMove(x, y){
 }
 
 function moveCharacters(){
-	for(index = 0; index < players.me.length; index++){
-		if(charactersList[index].x == mousePosition.x && charactersList[index].y == mousePosition.y){
+	for(characterIndex = 0; characterIndex < 1; characterIndex++){
+		if(charactersList[characterIndex].x == mousePosition.x && charactersList[characterIndex].y == mousePosition.y){
 			isRequiredMoveCharacter = false;
 		}
-		tmpSpeed = charactersList[index].speed
-		if(charactersList[index].x > mousePosition.x){
-			charactersList[index].x = move(charactersList[index].x, -1, tmpSpeed)
+		tmpSpeed = charactersList[characterIndex].speed;
+		if(charactersList[characterIndex].x > mousePosition.x){
+			charactersList[characterIndex].x = move(charactersList[characterIndex].x, -1, tmpSpeed)
 			moving.x = true;
 		} else{
-			charactersList[index].x = move(charactersList[index].x, 1, tmpSpeed)
+			charactersList[characterIndex].x = move(charactersList[characterIndex].x, 1, tmpSpeed)
 			moving.x = true;
 		}
 		
-		if(charactersList[index].y > mousePosition.y){
-			charactersList[index].y = move(charactersList[index].y, -1, tmpSpeed)
+		if(charactersList[characterIndex].y > mousePosition.y){
+			charactersList[characterIndex].y = move(charactersList[characterIndex].y, -1, tmpSpeed)
 			moving.y = true;
 		} else{
-			charactersList[index].y = move(charactersList[index].y, 1, tmpSpeed)
+			charactersList[characterIndex].y = move(charactersList[characterIndex].y, 1, tmpSpeed)
 			moving.y = true;
 		}
 		
-		if(charactersList[index].x == mousePosition.x){
+		if(charactersList[characterIndex].x == mousePosition.x){
 			moving.x = false;
 		}
-		if(charactersList[index].y == mousePosition.y){
+		if(charactersList[characterIndex].y == mousePosition.y){
 			moving.y = false;
 		}
-
 	}
 }
 

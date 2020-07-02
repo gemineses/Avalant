@@ -39,3 +39,6 @@ PATCH:
 2/1/18
 - Added dynamic background
 - Fixed performance issues
+
+6/29/20
+- Cone classes and logic

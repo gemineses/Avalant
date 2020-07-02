@@ -1,9 +1,4 @@
-const senseTypes = {
-    0 : 'vision',
-    1 : 'audio'
-};
-
-class Cone {
+class ConeI {
     #id =  '';
     #frequencyDistance = 0;
     #direction = 0;
