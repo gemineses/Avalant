@@ -16,61 +16,79 @@ var groundsType = [
 		color: "#009900"
 	},
 	{
-		name: "default",
-		color: "#FFF"
+		name: "fire",
+		color: "#F00"
 	},
 	{
-		name: "defaultblack",
-		color: "#FFFF09"
+		name: "rock",
+		color: "#CCC"
 	}
 	]
 	/*MAX 2000 px x 2000px*/
 function generateMap(){
+	// TODO: CALL SERVICE
 	MAPPROCEDURE = {
+		//all mapping values had to be 10% of dimentions sizes
 		dimensions: {
-			x: 2000,
-			y: 2000
+			x: 20,
+			y: 20
 		},
+		mapCompleted: UTIL_generateArrays(20,20),
 		checkpoint: {
-			x: 200,
-			y: 200,
+			x: 20,
+			y: 20,
 		},
 		map : [{
-				ground: groundsType[3],
-				x:[0, 500],
-				y:[0, 1000]
+				ground: groundsType[1],
+				x:[0, 5],
+				y:[0, 10]
 			},{
-				ground: groundsType[4],
-				x:[500, 1000],
-				y:[0, 1000]
+				ground: groundsType[0],
+				x:[5, 10],
+				y:[0, 10]
 			},{
-				ground: groundsType[3],
-				x:[1000, 1500],
-				y:[0, 2000]
+				ground: groundsType[1],
+				x:[10, 15],
+				y:[0, 20]
 			},{
-				ground: groundsType[4],
-				x:[1500, 2000],
-				y:[0, 2000]
+				ground: groundsType[2],
+				x:[15, 20],
+				y:[0, 20]
 			}
 			,{
-				ground: groundsType[3],
-				x:[0, 500],
-				y:[1000, 2000]
+				ground: groundsType[0],
+				x:[0, 5],
+				y:[10, 20]
 			}
 			,{
-				ground: groundsType[4],
-				x:[500, 1000],
-				y:[1000, 2000]
+				ground: groundsType[1],
+				x:[5, 10],
+				y:[10, 20]
+			},{
+				ground: groundsType[3],
+				x:[15, 20],
+				y:[0, 20]
 			}
 		]
 	};
 	
 	//Generating patterns
-	for(var index = 0; index< MAPPROCEDURE.map.length; index++){
-		tmpElement = document.createElement("img");
-		tmpElement.setAttribute("src", "texture/"+MAPPROCEDURE.map[index].ground.name+".png");
-		tmpElement.setAttribute("id", "img"+MAPPROCEDURE.map[index].ground.name);
-		document.getElementById("images").appendChild(tmpElement);
-		
+	
+	for(let mapIndex = 0; mapIndex< MAPPROCEDURE.map.length; mapIndex++){
+		let xStart = MAPPROCEDURE.map[mapIndex].x[0];
+		let xEnd = MAPPROCEDURE.map[mapIndex].x[1];
+
+		let yStart = MAPPROCEDURE.map[mapIndex].y[0];
+		let yEnd = MAPPROCEDURE.map[mapIndex].y[1];
+
+		for(let indexAxysX = xStart; indexAxysX < xEnd; indexAxysX++){
+			for(let indexAxysY = yStart; indexAxysY < yEnd; indexAxysY++){
+				MAPPROCEDURE.mapCompleted[indexAxysY][indexAxysX] = {
+					groundsType : MAPPROCEDURE.map[mapIndex].ground.name,
+					groundColor : MAPPROCEDURE.map[mapIndex].ground.color
+				}
+				
+			}
+		}
 	}
 }

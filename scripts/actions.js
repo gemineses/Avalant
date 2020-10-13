@@ -58,7 +58,7 @@ gameArea.canvasUIElement.addEventListener('touchmove', function(e){
 });
 
 function action_moveCharacter(e){
-	isRequiredPaintMap = true;
+	//isRequiredPaintMap = true;
 	isRequiredPaintCharacter = true;
 	var rect = gameArea.canvasUIElement.getBoundingClientRect();
 	mousePosition = {

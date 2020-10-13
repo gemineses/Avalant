@@ -124,20 +124,18 @@ function paintMap(){
 		gameArea.clear.bg();
 		ctx = gameArea.canvasBackgroundContext;
 		ctx.font = fontSizeMap + "px Arial";
-		for(var indexMap = 0; indexMap < MAPPROCEDURE.map.length; indexMap++){
-			if(!isPatternsCreated)PATTERNS.push(ctx.createPattern(document.getElementById("img"+MAPPROCEDURE.map[indexMap].ground.name), "repeat"));
-			//ctx.fillStyle = MAPPROCEDURE.map[indexMap].ground.color;
-			ctx.fillStyle = PATTERNS[indexMap];
-			ctx.rect(
-				MAPPROCEDURE.map[indexMap].x[0],
-				MAPPROCEDURE.map[indexMap].y[0],
-				MAPPROCEDURE.map[indexMap].x[1],
-				MAPPROCEDURE.map[indexMap].y[1]
-			);
-			ctx.fill();
+		let color = '';
+		console.log(MAPPROCEDURE.mapCompleted);
+		for(var indexMapX = 0; indexMapX < MAPPROCEDURE.dimensions.x; indexMapX++){
+			for(var indexMapY = 0; indexMapY < MAPPROCEDURE.dimensions.y; indexMapY++){
+				let x1 = indexMapX * 10;
+				let y1 = indexMapY * 10;
+				ctx.fillStyle = MAPPROCEDURE.mapCompleted[indexMapX][indexMapY].groundColor;
+				ctx.fillRect(x1, y1, 10, 10);
+				
+			}
 		}
 		isRequiredPaintMap = false;
-		isPatternsCreated = true;
 	}
 }
 
