@@ -22,6 +22,10 @@ var groundsType = [
 	{
 		name: "rock",
 		color: "#CCC"
+	},
+	{
+		name: "space",
+		color: "#000"
 	}
 	]
 	/*MAX 2000 px x 2000px*/
@@ -29,45 +33,40 @@ function generateMap(){
 	// TODO: CALL SERVICE
 	MAPPROCEDURE = {
 		//all mapping values had to be 10% of dimentions sizes
-		dimensions: {
-			x: 20,
-			y: 20
-		},
-		mapCompleted: UTIL_generateArrays(20,20),
+		mapCompleted: UTIL_generateArrays(50,50),
 		checkpoint: {
 			x: 20,
 			y: 20,
 		},
 		map : [{
+				ground: groundsType[5],
+				x:[0, 50],
+				y:[0, 50]
+			},
+			{
 				ground: groundsType[1],
-				x:[0, 5],
-				y:[0, 10]
-			},{
+				x:[1, 49],
+				y:[1, 49]
+			},
+			{
 				ground: groundsType[0],
-				x:[5, 10],
-				y:[0, 10]
-			},{
-				ground: groundsType[1],
-				x:[10, 15],
-				y:[0, 20]
-			},{
+				x:[7, 43],
+				y:[7, 43]
+			},
+			{
 				ground: groundsType[2],
-				x:[15, 20],
-				y:[0, 20]
-			}
-			,{
-				ground: groundsType[0],
-				x:[0, 5],
-				y:[10, 20]
-			}
-			,{
-				ground: groundsType[1],
-				x:[5, 10],
-				y:[10, 20]
-			},{
+				x:[12, 38],
+				y:[12, 38]
+			},
+			{
+				ground: groundsType[4],
+				x:[20, 30],
+				y:[20, 30]
+			},
+			{
 				ground: groundsType[3],
-				x:[15, 20],
-				y:[0, 20]
+				x:[25, 28],
+				y:[25, 28]
 			}
 		]
 	};

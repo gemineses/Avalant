@@ -126,8 +126,8 @@ function paintMap(){
 		ctx.font = fontSizeMap + "px Arial";
 		let color = '';
 		console.log(MAPPROCEDURE.mapCompleted);
-		for(var indexMapX = 0; indexMapX < MAPPROCEDURE.dimensions.x; indexMapX++){
-			for(var indexMapY = 0; indexMapY < MAPPROCEDURE.dimensions.y; indexMapY++){
+		for(var indexMapX = 0; indexMapX < MAPPROCEDURE.mapCompleted.length; indexMapX++){
+			for(var indexMapY = 0; indexMapY < MAPPROCEDURE.mapCompleted[0].length; indexMapY++){
 				let x1 = indexMapX * 10;
 				let y1 = indexMapY * 10;
 				ctx.fillStyle = MAPPROCEDURE.mapCompleted[indexMapX][indexMapY].groundColor;
