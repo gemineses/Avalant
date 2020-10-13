@@ -19,7 +19,16 @@ class CharactersI {
     GetPositionX(){ if(this.validateObjectReadyToBePrinted) return this.#positionX; }
     GetPositionY(){ if(this.validateObjectReadyToBePrinted) return this.#positionY; }
     GetName(){ if(this.validateObjectReadyToBePrinted) return this.#name; }
-    GetSpeed(){ if(this.validateObjectReadyToBePrinted) return this.#speed; }
+    GetSpeed(map){ 
+        if(this.validateObjectReadyToBePrinted){
+            let groundSpeed = 1;
+            if(map != undefined){
+                let mapType = map.mapCompleted[Math.floor(this.#positionX/10)][Math.floor(this.#positionY/10)];
+                groundSpeed = mapType.speedReduction;
+            }
+            return this.#speed * groundSpeed;
+        } 
+    }
     GetIsPlayable(){return this.#isPlayable;}
     /*  END Getters & Setters */
 

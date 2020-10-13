@@ -21,7 +21,7 @@ var groundsType = [
 	{
 		name: "fire",
 		color: "#F00",
-		speedReduction: 0
+		speedReduction: 0.01
 	},
 	{
 		name: "rock",
@@ -31,7 +31,7 @@ var groundsType = [
 	{
 		name: "space",
 		color: "#000",
-		speedReduction: 0
+		speedReduction: 0.01
 	}
 	]
 	/*MAX 2000 px x 2000px*/
@@ -90,7 +90,8 @@ function generateMap(){
 			for(let indexAxysY = yStart; indexAxysY < yEnd; indexAxysY++){
 				MAPPROCEDURE.mapCompleted[indexAxysY][indexAxysX] = {
 					groundsType : MAPPROCEDURE.map[mapIndex].ground.name,
-					groundColor : MAPPROCEDURE.map[mapIndex].ground.color
+					groundColor : MAPPROCEDURE.map[mapIndex].ground.color,
+					speedReduction : MAPPROCEDURE.map[mapIndex].ground.speedReduction
 				}
 				
 			}

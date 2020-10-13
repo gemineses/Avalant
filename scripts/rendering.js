@@ -32,7 +32,7 @@ function moveCharacters(){
 		if(player.GetPositionX() == mousePosition.x && player.GetPositionY() == mousePosition.y){
 			isRequiredMoveCharacter = false;
 		}
-		tmpSpeed = player.GetSpeed();
+		tmpSpeed = player.GetSpeed(MAPPROCEDURE);
 
 		if(player.GetPositionX() > mousePosition.x){
 			movingTo.x = move(player.GetPositionX(), -1, tmpSpeed)
