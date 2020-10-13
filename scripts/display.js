@@ -195,7 +195,6 @@ function paintUI(){
 }
 function paintGame(){
 	moveCharacters();
-	//printCharacters();
 	gameArea.clear.game();
 	printRealObjects(gameArea.canvasGameContext);
 }

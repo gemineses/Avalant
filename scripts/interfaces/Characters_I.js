@@ -9,6 +9,7 @@ class CharactersI {
     #senses = new SensesI();
     #isObjectReady = false;
     #isPlayable = false;
+    #isRequiredMoveCharacter = false;
 
     constructor(ID, NAME){
         this.#id = ID;
@@ -19,6 +20,7 @@ class CharactersI {
     GetPositionX(){ if(this.validateObjectReadyToBePrinted) return this.#positionX; }
     GetPositionY(){ if(this.validateObjectReadyToBePrinted) return this.#positionY; }
     GetName(){ if(this.validateObjectReadyToBePrinted) return this.#name; }
+    
     GetSpeed(map){ 
         if(this.validateObjectReadyToBePrinted){
             let groundSpeed = 1;
@@ -84,6 +86,16 @@ class CharactersI {
         if(this.#isObjectReady){
             console.log('PON CUALQUIER MENSAJE AQUI');
         }
+    }
+
+    StartMove = function(){ 
+        this.#isRequiredMoveCharacter = true; 
+    }
+    StopMove = function(){ 
+        this.#isRequiredMoveCharacter = false; 
+    }
+    IsMoving = function(){
+        return this.#isRequiredMoveCharacter; 
     }
 }
 
