@@ -61,10 +61,16 @@ class CharactersI {
         this.validateObjectReadyToBePrinted();
         if(this.#isObjectReady){
             ctx = gameArea.canvasGameContext;
+            
+            
+            ctx.beginPath();
+            ctx.arc(this.#positionX, this.#positionY,5,0,2*Math.PI);
+            ctx.fillStyle = "#F0EDCC";
+            ctx.fill();
+            ctx.stroke();
+
             ctx.fillStyle = "black";
             ctx.font = 12 + "px Arial";
-            
-            ctx.fillText("0", this.#positionX, this.#positionY);
             ctx.fillText(this.#name, 
                 (this.#positionX - 12/2),
                 (this.#positionY - 12));
