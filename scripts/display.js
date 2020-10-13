@@ -10,6 +10,7 @@ gameArea = {
     canvasBackgroundElement : document.getElementById("background-layer"),
 	canvasUIElement : document.getElementById("ui-layer"),
 	canvasGameElement : document.getElementById("game-layer"),
+	canvasMouseEvents: document.getElementById("mouse-layer"),
 	width : gameAreaSetWidth,
 	height: gameAreaSetHeight,
     start : function() {
@@ -125,18 +126,27 @@ function paintMap(){
 		ctx = gameArea.canvasBackgroundContext;
 		ctx.font = fontSizeMap + "px Arial";
 		let color = '';
-		console.log(MAPPROCEDURE.mapCompleted);
 		for(var indexMapX = 0; indexMapX < MAPPROCEDURE.mapCompleted.length; indexMapX++){
 			for(var indexMapY = 0; indexMapY < MAPPROCEDURE.mapCompleted[0].length; indexMapY++){
 				let x1 = indexMapX * 10;
 				let y1 = indexMapY * 10;
 				ctx.fillStyle = MAPPROCEDURE.mapCompleted[indexMapX][indexMapY].groundColor;
 				ctx.fillRect(x1, y1, 10, 10);
-				
 			}
 		}
 		isRequiredPaintMap = false;
 	}
+}
+
+function display_PaintMouseOver(x, y, groundType){
+	gameArea.clear.ui();
+	let ctx = gameArea.canvasUIContext;
+	ctx.beginPath();
+	ctx.lineWidth = "1";
+	ctx.strokeStyle = "#000";
+	ctx.rect(x*10, y*10, 10, 10);
+	ctx.stroke();
+
 }
 
 function printCharacters(){

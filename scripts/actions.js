@@ -67,6 +67,24 @@ function action_moveCharacter(e){
 	}
 }
 
+gameArea.canvasUIElement.addEventListener('mousemove', function(e){
+	e.preventDefault();
+	move_cursor(e);
+})
+
+function move_cursor(e){
+	var rect = gameArea.canvasUIElement.getBoundingClientRect();
+	let mousePosition = {
+		x : (e.clientX - rect.left) / 10,
+		y : (e.clientY - rect.top) / 10
+	}
+
+	if((Math.floor(mousePosition.x) < MAPPROCEDURE.mapCompleted.length) 
+		&& Math.floor(mousePosition.y) < MAPPROCEDURE.mapCompleted[0].length) {
+			display_PaintMouseOver(Math.floor(mousePosition.x), Math.floor(mousePosition.y), MAPPROCEDURE.mapCompleted[Math.floor(mousePosition.x)][Math.floor(mousePosition.y)]);		
+		}
+}
+
 /*QUEST ACTIONS*/
 function startQuest(quest){
 	for(index = 0; index<quest.actions.length; index++){
@@ -84,3 +102,10 @@ function doAction(typeAction, values){
 }
 
 /*END QUEST ACTIONS*/
+
+
+/* ACTIONS MOUSE EVENTS DISPLAY */
+
+
+
+/* ACTION MOUSE EVENTS DISPLAY END*/

@@ -5,27 +5,33 @@ var sizeMapY = (gameAreaSetHeight/fontSizeMap)*2;//how many grounds characters f
 var groundsType = [
 	{
 		name: "sand",
-		color: "#ffecb3"
+		color: "#ffecb3",
+		speedReduction: 0.5
 	},
 	{
 		name: "water",
-		color: "#b3e6ff"
+		color: "#b3e6ff",
+		speedReduction: 0.3
 	},
 	{
 		name: "grass",
-		color: "#009900"
+		color: "#009900",
+		speedReduction: 1
 	},
 	{
 		name: "fire",
-		color: "#F00"
+		color: "#F00",
+		speedReduction: 0
 	},
 	{
 		name: "rock",
-		color: "#CCC"
+		color: "#CCC",
+		speedReduction: 0.7
 	},
 	{
 		name: "space",
-		color: "#000"
+		color: "#000",
+		speedReduction: 0
 	}
 	]
 	/*MAX 2000 px x 2000px*/
