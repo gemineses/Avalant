@@ -28,8 +28,19 @@ function moveCharacters(){
 		if(!player.GetIsPlayable()) return 0;
 		
 		let movingTo = {x: player.GetPositionX(), y: player.GetPositionY()};
-		if(Math.floor(player.GetPositionX()) == Math.floor(mousePosition.x) 
-			&& Math.floor(player.GetPositionY()) == Math.floor(mousePosition.y)){
+		
+		let playerPostionX = Math.floor(player.GetPositionX());
+		let playerPostionY = Math.floor(player.GetPositionY());
+		let mousePositionX = Math.floor(mousePosition.x);
+		let mousePositionY = Math.floor(mousePosition.y);
+
+		let distanceX = playerPostionX - mousePositionX;
+		let distanceY = playerPostionY - mousePositionY;
+
+		if( distanceX < 0) distanceX = distanceX * -1;
+		if( distanceY < 0) distanceY = distanceY * -1;
+
+		if( distanceX < 2 && distanceY < 2){
 			player.StopMove();
 		}else{
 			player.StartMove();
