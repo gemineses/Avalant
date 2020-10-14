@@ -10,6 +10,7 @@ gameArea = {
     canvasBackgroundElement : document.getElementById("background-layer"),
 	canvasUIElement : document.getElementById("ui-layer"),
 	canvasGameElement : document.getElementById("game-layer"),
+	canvasMouseEvents: document.getElementById("mouse-layer"),
 	width : gameAreaSetWidth,
 	height: gameAreaSetHeight,
     start : function() {
@@ -124,21 +125,28 @@ function paintMap(){
 		gameArea.clear.bg();
 		ctx = gameArea.canvasBackgroundContext;
 		ctx.font = fontSizeMap + "px Arial";
-		for(var indexMap = 0; indexMap < MAPPROCEDURE.map.length; indexMap++){
-			if(!isPatternsCreated)PATTERNS.push(ctx.createPattern(document.getElementById("img"+MAPPROCEDURE.map[indexMap].ground.name), "repeat"));
-			//ctx.fillStyle = MAPPROCEDURE.map[indexMap].ground.color;
-			ctx.fillStyle = PATTERNS[indexMap];
-			ctx.rect(
-				MAPPROCEDURE.map[indexMap].x[0],
-				MAPPROCEDURE.map[indexMap].y[0],
-				MAPPROCEDURE.map[indexMap].x[1],
-				MAPPROCEDURE.map[indexMap].y[1]
-			);
-			ctx.fill();
+		let color = '';
+		for(var indexMapX = 0; indexMapX < MAPPROCEDURE.mapCompleted.length; indexMapX++){
+			for(var indexMapY = 0; indexMapY < MAPPROCEDURE.mapCompleted[0].length; indexMapY++){
+				let x1 = indexMapX * 10;
+				let y1 = indexMapY * 10;
+				ctx.fillStyle = MAPPROCEDURE.mapCompleted[indexMapX][indexMapY].groundColor;
+				ctx.fillRect(x1, y1, 10, 10);
+			}
 		}
 		isRequiredPaintMap = false;
-		isPatternsCreated = true;
 	}
+}
+
+function display_PaintMouseOver(x, y, groundType){
+	gameArea.clear.ui();
+	let ctx = gameArea.canvasUIContext;
+	ctx.beginPath();
+	ctx.lineWidth = "1";
+	ctx.strokeStyle = "#000";
+	ctx.rect(x*10, y*10, 10, 10);
+	ctx.stroke();
+
 }
 
 function printCharacters(){
@@ -156,6 +164,15 @@ function printCharacters(){
 	}
 }
 
+function printRealObjects(canvasContext){
+	printPlayer(canvasContext);
+}
+
+function printPlayer(canvasContext){
+	players.forEach(function(player){
+		player.draw(canvasContext);
+	});
+}
 /* End of print Map */
 
 /*
@@ -178,7 +195,8 @@ function paintUI(){
 }
 function paintGame(){
 	moveCharacters();
-	printCharacters();
+	gameArea.clear.game();
+	printRealObjects(gameArea.canvasGameContext);
 }
 
 

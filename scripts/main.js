@@ -1,7 +1,8 @@
 /*CORE VARIABLES, DONTTTTT TOUCH!!*/
 
 function startGame() {
-	setCharacters();
+    setCharacters();
+    isRequiredPaintMap = true;
 	generateMap();
     gameArea.start();
 	startQuest(quests.login)

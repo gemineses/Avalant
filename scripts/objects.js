@@ -1,47 +1,10 @@
 /*CORE VARIABLES, DONTTTTT TOUCH!!*/
-var players = {
-	me : [
-		{
-			name: 'jss',
-			x: 100,
-			y: 100,
-			status:'',
-			properties:{
-				speed: 1, // TODO: Set speed based on movements per seconds instead of movements per frame	
-			},
-			senses: {
-				viewPosition: 0, // 0 to 360, 0 right, 90 up, 180 left, 270 down
-				viewZoom: {
-					close: 10,
-					near: 20,
-					far: 50
-				},
-				excitementValue: 0 // evaluates the interest for him actual route
-			}
-			
-		}
-	],
-	ia : [
-		{
-			name: 'ia',
-			x: 150,
-			y: 120,
-			status:'',
-			properties:{
-				speed: 1	
-			},
-			senses: {
-				viewPosition: 0, // 0 to 360, 0 right, 90 up, 180 left, 270 down
-				viewZoom: {
-					close: 10,
-					near: 20,
-					far: 50
-				},
-				excitementValue: 0 // evaluates the interest for him actual route
-			}
-		}
-	]
-}
+var players = new Array(CharactersI);
+players[0] = new CharactersI(0, 'Jss');
+players[0].generateObject(100, 100);
+players[0].makePlayable();
+players[1] = new CharactersI(1, 'IA');
+players[1].generateObject(150, 120);
 
 var environmentSolids = {
 	/*

@@ -1,0 +1,38 @@
+FOR EACH INTERFACE
+
+class ClassName {
+    #id =  '';
+    #isObjectReady = false;
+    
+    ---USE ALWAYS FIRST LETTER TO UPPERCASE
+    constructor(Id){
+        this.#id = Id,
+    }
+    
+    --- GENERAL LOGIC
+    generateObject = function(){
+
+    }
+
+    --- BEFORE TO BE DRAWED MUST VALIDATE WITH THIS METHOD
+    --- (USE THIS ONE ON UNIT TESTING)
+    validateObjectReadyToBePrinted = function(){
+        if(this.id <= 0) this.#isObjectReady = false;
+        this.#isObjectReady = true;
+    }
+
+    ---SHOULD RETURN ALL THE CANVAS CTX VALUES
+    draw = function(){
+        if(this.#isObjectReady){
+            
+        }
+        return false;
+    }
+
+    ---AN EASY WAY TO TEST (NOT WITH UNIT TEST)
+    printTest = function(){
+        if(this.#isObjectReady){
+            console.log('PON CUALQUIER MENSAJE AQUI');
+        }
+    }
+}

@@ -4,22 +4,13 @@ var moving = {x: false, y: false}
 var charactersList = [];
 
 function setCharacters(){
-	for(index = 0; index < players.me.length; index++){
+	for(characterIndex = 0; characterIndex < players.length; characterIndex++){
 		charactersList.push({
-			x : players.me[index].x,
-			y : players.me[index].y,
-			name: players.me[index].name,
-			speed: players.me[index].properties.speed
-			
-		});
-	}
-	for(index = 0; index < players.ia.length; index++){
-		charactersList.push({
-			x : players.ia[index].x,
-			y : players.ia[index].y,
-			name: players.ia[index].name,
-			speed: players.ia[index].properties.speed
-			
+			x : players[characterIndex].GetPositionX(),
+			y : players[characterIndex].GetPositionY(),
+			name: players[characterIndex].GetName(),
+			speed: players[characterIndex].GetSpeed()
+			//cones: []
 		});
 	}
 }
@@ -33,36 +24,48 @@ function hardMove(x, y){
 }
 
 function moveCharacters(){
-	for(index = 0; index < players.me.length; index++){
-		if(charactersList[index].x == mousePosition.x && charactersList[index].y == mousePosition.y){
-			isRequiredMoveCharacter = false;
+	players.forEach(function(player){
+		if(!player.GetIsPlayable()) return 0;
+		
+		let movingTo = {x: player.GetPositionX(), y: player.GetPositionY()};
+		
+		let playerPostionX = Math.floor(player.GetPositionX());
+		let playerPostionY = Math.floor(player.GetPositionY());
+		let mousePositionX = Math.floor(mousePosition.x);
+		let mousePositionY = Math.floor(mousePosition.y);
+
+		let distanceX = playerPostionX - mousePositionX;
+		let distanceY = playerPostionY - mousePositionY;
+
+		if( distanceX < 0) distanceX = distanceX * -1;
+		if( distanceY < 0) distanceY = distanceY * -1;
+
+		if( distanceX < 2 && distanceY < 2){
+			player.StopMove();
+		}else{
+			player.StartMove();
 		}
-		tmpSpeed = charactersList[index].speed
-		if(charactersList[index].x > mousePosition.x){
-			charactersList[index].x = move(charactersList[index].x, -1, tmpSpeed)
-			moving.x = true;
+
+		if(!player.IsMoving()) return 0;
+		tmpSpeed = player.GetSpeed(MAPPROCEDURE);
+
+		if(player.GetPositionX() > mousePosition.x){
+			movingTo.x = move(player.GetPositionX(), -1, tmpSpeed)
 		} else{
-			charactersList[index].x = move(charactersList[index].x, 1, tmpSpeed)
-			moving.x = true;
+			movingTo.x = move(player.GetPositionX(), 1, tmpSpeed)
 		}
 		
-		if(charactersList[index].y > mousePosition.y){
-			charactersList[index].y = move(charactersList[index].y, -1, tmpSpeed)
-			moving.y = true;
+		if(player.GetPositionY() > mousePosition.y){
+			movingTo.y = move(player.GetPositionY(), -1, tmpSpeed)
 		} else{
-			charactersList[index].y = move(charactersList[index].y, 1, tmpSpeed)
-			moving.y = true;
+			movingTo.y = move(player.GetPositionY(), 1, tmpSpeed)
 		}
-		
-		if(charactersList[index].x == mousePosition.x){
-			moving.x = false;
-		}
-		if(charactersList[index].y == mousePosition.y){
-			moving.y = false;
-		}
-	}
+
+		player.generateObject(movingTo.x, movingTo.y);
+	});
 }
 
 function move(caracter, upDown, speed){
 	return caracter + (speed * upDown)
 }
+
