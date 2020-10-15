@@ -38,6 +38,14 @@ function chat(){
 	tmpText = "";
 }
 
+/* Left click */
+gameArea.canvasUIElement.addEventListener('click', function(e){
+	e.preventDefault();
+	uiBoxes_generateUIBoxes(e);
+});
+
+/* END Left click */
+
 /*right click*/
 document.addEventListener('contextmenu', function(e){e.preventDefault();});
 gameArea.canvasUIElement.addEventListener('contextmenu', function(e){
@@ -58,9 +66,8 @@ gameArea.canvasUIElement.addEventListener('touchmove', function(e){
 });
 
 function action_moveCharacter(e){
-	//isRequiredPaintMap = true;
 	isRequiredPaintCharacter = true;
-	var rect = gameArea.canvasUIElement.getBoundingClientRect();
+	var rect = gameArea.canvasGameElement.getBoundingClientRect();
 	mousePosition = {
 		x : e.clientX - rect.left,
 		y : e.clientY - rect.top

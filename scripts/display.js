@@ -7,10 +7,11 @@
 */
 
 gameArea = {
+	canvasMouseEventsElement: document.getElementById("mouse-layer"),
     canvasBackgroundElement : document.getElementById("background-layer"),
 	canvasUIElement : document.getElementById("ui-layer"),
 	canvasGameElement : document.getElementById("game-layer"),
-	canvasMouseEvents: document.getElementById("mouse-layer"),
+
 	width : gameAreaSetWidth,
 	height: gameAreaSetHeight,
     start : function() {
@@ -36,6 +37,8 @@ function setScreenResolution(){
 	gameArea.canvasUIElement.height = gameArea.height;
 	gameArea.canvasGameElement.width = gameArea.width;
 	gameArea.canvasGameElement.height = gameArea.height;
+	gameArea.canvasMouseEventsElement.width = gameArea.width;
+	gameArea.canvasMouseEventsElement.height = gameArea.height;
 }
 
 /*STARTING LOADING ALL PRESETS AT THE FIRST TIME, try to create everything here to get a better perfomance and not generating variables in time of execute*/
@@ -43,6 +46,7 @@ function loadContent(){
 	//TODO LOADBAR
 	gameArea.canvasBackgroundContext = gameArea.canvasBackgroundElement.getContext("2d");
 	gameArea.canvasUIContext = gameArea.canvasUIElement.getContext("2d");
+	gameArea.canvasMouseContext = gameArea.canvasMouseEventsElement.getContext("2d");
 	gameArea.canvasGameContext = gameArea.canvasGameElement.getContext("2d");
 	gameArea.clear = {};
 	gameArea.clear.bg = function(){
@@ -53,6 +57,9 @@ function loadContent(){
 	}
 	gameArea.clear.game = function(){
 		gameArea.canvasGameContext.clearRect(0, 0, gameArea.width, gameArea.height);
+	}
+	gameArea.clear.mouse = function(){
+		gameArea.canvasMouseContext.clearRect(0, 0, gameArea.width, gameArea.height);
 	}
 	hardMove(MAPPROCEDURE.checkpoint.x, MAPPROCEDURE.checkpoint.y);
 }
@@ -78,7 +85,7 @@ function updateGameArea() {
 -------------------------------------	All display messages methods
 */
 function addWritingMessage(tmpMsg){
-	gameArea.clear.ui();
+	//gameArea.clear.ui();
 	ctx = gameArea.canvasUIContext;
 	ctx.fillStyle = "black";
 	ctx.font = fontSizeMessages+"px Arial";
@@ -139,8 +146,8 @@ function paintMap(){
 }
 
 function display_PaintMouseOver(x, y, groundType){
-	gameArea.clear.ui();
-	let ctx = gameArea.canvasUIContext;
+	gameArea.clear.mouse();
+	let ctx = gameArea.canvasMouseContext;
 	ctx.beginPath();
 	ctx.lineWidth = "1";
 	ctx.strokeStyle = "#000";
