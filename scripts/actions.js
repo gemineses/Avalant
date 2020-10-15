@@ -67,11 +67,8 @@ gameArea.canvasUIElement.addEventListener('touchmove', function(e){
 
 function action_moveCharacter(e){
 	isRequiredPaintCharacter = true;
-	var rect = gameArea.canvasGameElement.getBoundingClientRect();
-	mousePosition = {
-		x : e.clientX - rect.left,
-		y : e.clientY - rect.top
-	}
+	
+	mousePosition = UTIL_getMousePosition(e)
 }
 
 gameArea.canvasUIElement.addEventListener('mousemove', function(e){

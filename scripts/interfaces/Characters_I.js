@@ -19,6 +19,7 @@ class CharactersI {
     /* Getters & Setters */
     GetPositionX(){ if(this.validateObjectReadyToBePrinted) return this.#positionX; }
     GetPositionY(){ if(this.validateObjectReadyToBePrinted) return this.#positionY; }
+    GetID(){ if(this.validateObjectReadyToBePrinted) return this.#id; }
     GetName(){ if(this.validateObjectReadyToBePrinted) return this.#name; }
     
     GetSpeed(map){ 
@@ -97,6 +98,8 @@ class CharactersI {
     IsMoving = function(){
         return this.#isRequiredMoveCharacter; 
     }
+
+
 }
 
 class SensesI{
