@@ -37,31 +37,31 @@ function UTIL_getDistanceByDegree(degree, xPosition, yPosition, distance){
     switch(hourFormat){
         case 1:
             point.x += distance;
-            point.y += distance;
+            point.y -= distance;
             break;
         case 2:
             point.x += distance;
             break;
         case 3:
             point.x += distance;
-            point.y -= distance;
+            point.y += distance;
             break;
         case 4:
-                point.y -= distance;
+                point.y += distance;
             break;
-            case 5:
+        case 5:
                 point.x -= distance;
-                point.y -= distance;
+                point.y += distance;
             break;
         case 6:
                 point.y -= distance ;
             break;
         case 7:
                 point.x -= distance;
-                point.y += distance;
+                point.y -= distance;
             break;
         case 8:
-                point.y += distance;
+                point.y -= distance;
             break;
     }
     return point;
@@ -70,4 +70,30 @@ function UTIL_getDistanceByDegree(degree, xPosition, yPosition, distance){
 
 function UTIL_calculateHourByDegree(degree){
     return Math.round(degree / 45); // hour format
+}
+
+function UTIL_getDegreeFromPoints(xPosition, yPosition, newXPosition, newYPosition){
+    let triangleX = xPosition - newXPosition;
+    let triangleY = yPosition - newYPosition;
+    let isXNegative = false;
+    let isYNegative = false;
+    if(triangleX < 0){
+        isXNegative = true;
+    }
+    if(triangleY < 0){
+        isYNegative = true;
+    }
+    
+    //Degree by clockwise
+    let degree = 0;
+    if(!isXNegative && !isYNegative){
+        degree = 315;
+    } else if(!isXNegative && isYNegative){
+        degree = 225;
+    } else if(isXNegative && isYNegative){
+        degree = 135;
+    } else if(isXNegative && !isYNegative){
+        degree = 45;
+    }
+    return degree;
 }

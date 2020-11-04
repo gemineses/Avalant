@@ -90,9 +90,13 @@ class CharactersI {
     renderVision = function(ctx, positionX, positionY){
         ctx.beginPath();
         ctx.moveTo(positionX, positionY);
-        let position = UTIL_getDistanceByDegree(this.#visionRadarPosition, positionX, positionY, this.#visionRadarLenght);
+        /*let position = UTIL_getDistanceByDegree(this.#visionRadarPosition, positionX, positionY, this.#visionRadarLenght);
+        ctx.lineTo(position.x, position.y);*/
+        let position = UTIL_getDistanceByDegree(
+            UTIL_getDegreeFromPoints(positionX, positionY, mousePosition.x, mousePosition.y),
+             positionX, positionY, this.#visionRadarLenght);
+        
         ctx.lineTo(position.x, position.y);
-        //ctx.lineTo(300, 300);
         ctx.closePath();
         ctx.fill();
         ctx.stroke();
