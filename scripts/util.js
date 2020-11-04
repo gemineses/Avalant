@@ -26,3 +26,48 @@ function UTIL_getMousePosition(event){
 		y : event.clientY - rect.top
     }
 }
+
+function UTIL_getDistanceByDegree(degree, xPosition, yPosition, distance){
+    hourFormat = UTIL_calculateHourByDegree(degree);
+    let point = {
+        x: xPosition,
+        y: yPosition
+    };
+    //calculate degree direction by clock with 8 sides
+    switch(hourFormat){
+        case 1:
+            point.x += distance;
+            point.y += distance;
+            break;
+        case 2:
+            point.x += distance;
+            break;
+        case 3:
+            point.x += distance;
+            point.y -= distance;
+            break;
+        case 4:
+                point.y -= distance;
+            break;
+            case 5:
+                point.x -= distance;
+                point.y -= distance;
+            break;
+        case 6:
+                point.y -= distance ;
+            break;
+        case 7:
+                point.x -= distance;
+                point.y += distance;
+            break;
+        case 8:
+                point.y += distance;
+            break;
+    }
+    return point;
+}
+
+
+function UTIL_calculateHourByDegree(degree){
+    return Math.round(degree / 45); // hour format
+}

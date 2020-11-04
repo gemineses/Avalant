@@ -10,6 +10,9 @@ class CharactersI {
     #isObjectReady = false;
     #isPlayable = false;
     #isRequiredMoveCharacter = false;
+    #visionRadarPosition = 90; // 360 degree
+    #visionRadarSpace = 90; // 360 degree
+    #visionRadarLenght = 50;
 
     constructor(ID, NAME){
         this.#id = ID;
@@ -68,21 +71,33 @@ class CharactersI {
             
             ctx.beginPath();
             ctx.arc(this.#positionX, this.#positionY,5,0,2*Math.PI);
+            ctx.closePath();
             ctx.fillStyle = "#F0EDCC";
             ctx.fill();
             ctx.stroke();
-
+            
             ctx.fillStyle = "black";
             ctx.font = 12 + "px Arial";
             ctx.fillText(this.#name, 
                 (this.#positionX - 12/2),
                 (this.#positionY - 12));
-        
+            
+            this.renderVision(ctx, this.#positionX, this.#positionY);
         }
         return false;
     }
 
-    
+    renderVision = function(ctx, positionX, positionY){
+        ctx.beginPath();
+        ctx.moveTo(positionX, positionY);
+        let position = UTIL_getDistanceByDegree(this.#visionRadarPosition, positionX, positionY, this.#visionRadarLenght);
+        ctx.lineTo(position.x, position.y);
+        //ctx.lineTo(300, 300);
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+    }
+
     printTest = function(){
         if(this.#isObjectReady){
             console.log('PON CUALQUIER MENSAJE AQUI');
