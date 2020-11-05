@@ -12,7 +12,7 @@ class CharactersI {
     #isRequiredMoveCharacter = false;
     #visionRadarPosition = 90; // 360 degree
     #visionRadarSpace = 90; // 360 degree
-    #visionRadarLenght = 50;
+    #visionRadarLenght = playersVisionDistance;
 
     constructor(ID, NAME){
         this.#id = ID;
@@ -90,13 +90,12 @@ class CharactersI {
     renderVision = function(ctx, positionX, positionY){
         ctx.beginPath();
         ctx.moveTo(positionX, positionY);
-        /*let position = UTIL_getDistanceByDegree(this.#visionRadarPosition, positionX, positionY, this.#visionRadarLenght);
-        ctx.lineTo(position.x, position.y);*/
+
         let position = UTIL_getDistanceByDegree(
             UTIL_getDegreeFromPoints(positionX, positionY, mousePosition.x, mousePosition.y),
              positionX, positionY, this.#visionRadarLenght);
         
-        ctx.lineTo(position.x, position.y);
+        ctx.lineTo(position.originalPosition.x, position.originalPosition.y);
         ctx.closePath();
         ctx.fill();
         ctx.stroke();

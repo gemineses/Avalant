@@ -30,38 +30,53 @@ function UTIL_getMousePosition(event){
 function UTIL_getDistanceByDegree(degree, xPosition, yPosition, distance){
     hourFormat = UTIL_calculateHourByDegree(degree);
     let point = {
-        x: xPosition,
-        y: yPosition
+        originalPosition: {
+            x: xPosition,
+            y: yPosition
+        },
+        focusView: {
+            x: 0,
+            y: 0
+        },
+        leftView: {
+            x: 0,
+            y: 0
+        },
+        rightView: {
+            x: 0,
+            y: 0
+        }
     };
+
     //calculate degree direction by clock with 8 sides
     switch(hourFormat){
         case 1:
-            point.x += distance;
-            point.y -= distance;
+            point.originalPosition.x += distance;
+            point.originalPosition.y -= distance;
             break;
         case 2:
-            point.x += distance;
+            point.originalPosition.x += distance;
             break;
         case 3:
-            point.x += distance;
-            point.y += distance;
+            point.originalPosition.x += distance;
+            point.originalPosition.y += distance;
             break;
         case 4:
-                point.y += distance;
+                point.originalPosition.y += distance;
             break;
         case 5:
-                point.x -= distance;
-                point.y += distance;
+                point.originalPosition.x -= distance;
+                point.originalPosition.y += distance;
             break;
         case 6:
-                point.y -= distance ;
+                point.originalPosition.y -= distance ;
             break;
         case 7:
-                point.x -= distance;
-                point.y -= distance;
+                point.originalPosition.x -= distance;
+                point.originalPosition.y -= distance;
             break;
         case 8:
-                point.y -= distance;
+                point.originalPosition.y -= distance;
             break;
     }
     return point;
@@ -75,17 +90,14 @@ function UTIL_calculateHourByDegree(degree){
 function UTIL_getDegreeFromPoints(xPosition, yPosition, newXPosition, newYPosition){
     let triangleX = xPosition - newXPosition;
     let triangleY = yPosition - newYPosition;
-    let isXNegative = false;
-    let isYNegative = false;
-    if(triangleX < 0){
-        isXNegative = true;
-    }
-    if(triangleY < 0){
-        isYNegative = true;
-    }
+    let isXNegative = triangleX < 0;
+    let isYNegative = triangleY < 0;
     
+    let isXClose = triangleX < (playersVisionDistance/2) || triangleX < ((playersVisionDistance/2)*-1);
+    let isYClose = triangleY < (playersVisionDistance/2) || triangleY < ((playersVisionDistance/2)*-1);
     //Degree by clockwise
     let degree = 0;
+
     if(!isXNegative && !isYNegative){
         degree = 315;
     } else if(!isXNegative && isYNegative){
@@ -95,5 +107,6 @@ function UTIL_getDegreeFromPoints(xPosition, yPosition, newXPosition, newYPositi
     } else if(isXNegative && !isYNegative){
         degree = 45;
     }
+
     return degree;
 }
