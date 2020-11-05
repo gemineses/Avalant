@@ -51,29 +51,45 @@ function UTIL_getDistanceByDegree(degree, xPosition, yPosition, distance){
     //calculate degree direction by clock with 8 sides
     switch(hourFormat){
         case 1:
-            point.originalPosition.x += distance;
-            point.originalPosition.y -= distance;
+            point.leftView.x = xPosition;
+            point.leftView.y = yPosition - (distance);
+            point.focusView.x = xPosition + distance;
+            point.focusView.y = yPosition - distance;
+            point.rightView.x = xPosition + distance;
+            point.rightView.y = yPosition;
             break;
         case 2:
             point.originalPosition.x += distance;
             break;
         case 3:
-            point.originalPosition.x += distance;
-            point.originalPosition.y += distance;
+            point.leftView.x = xPosition + distance;
+            point.leftView.y = yPosition;
+            point.focusView.x = xPosition + distance;
+            point.focusView.y = yPosition + distance;
+            point.rightView.x = xPosition;
+            point.rightView.y = yPosition + distance;
             break;
         case 4:
                 point.originalPosition.y += distance;
             break;
         case 5:
-                point.originalPosition.x -= distance;
-                point.originalPosition.y += distance;
+            point.leftView.x = xPosition;
+            point.leftView.y = yPosition + distance;
+            point.focusView.x = xPosition - distance;
+            point.focusView.y = yPosition + distance;
+            point.rightView.x = xPosition - distance;
+            point.rightView.y = yPosition;
             break;
         case 6:
                 point.originalPosition.y -= distance ;
             break;
         case 7:
-                point.originalPosition.x -= distance;
-                point.originalPosition.y -= distance;
+            point.leftView.x = xPosition - distance;
+            point.leftView.y = yPosition;
+            point.focusView.x = xPosition - distance;
+            point.focusView.y = yPosition - distance;
+            point.rightView.x = xPosition;
+            point.rightView.y = yPosition - distance;
             break;
         case 8:
                 point.originalPosition.y -= distance;
@@ -90,8 +106,8 @@ function UTIL_calculateHourByDegree(degree){
 function UTIL_getDegreeFromPoints(xPosition, yPosition, newXPosition, newYPosition){
     let triangleX = xPosition - newXPosition;
     let triangleY = yPosition - newYPosition;
-    let isXNegative = triangleX < 0;
-    let isYNegative = triangleY < 0;
+    let isXNegative = triangleX <= -1;
+    let isYNegative = triangleY <= -1;
     
     let isXClose = triangleX < (playersVisionDistance/2) || triangleX < ((playersVisionDistance/2)*-1);
     let isYClose = triangleY < (playersVisionDistance/2) || triangleY < ((playersVisionDistance/2)*-1);

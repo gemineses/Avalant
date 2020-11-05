@@ -88,17 +88,23 @@ class CharactersI {
     }
 
     renderVision = function(ctx, positionX, positionY){
+        ctx.fillStyle = 'rgba(20,20,20,0.3)';
         ctx.beginPath();
-        ctx.moveTo(positionX, positionY);
 
         let position = UTIL_getDistanceByDegree(
             UTIL_getDegreeFromPoints(positionX, positionY, mousePosition.x, mousePosition.y),
              positionX, positionY, this.#visionRadarLenght);
         
+        
         ctx.lineTo(position.originalPosition.x, position.originalPosition.y);
+        ctx.lineTo(position.leftView.x, position.leftView.y);
+        ctx.lineTo(position.focusView.x, position.focusView.y);
+        ctx.lineTo(position.rightView.x, position.rightView.y);
         ctx.closePath();
-        ctx.fill();
+        
         ctx.stroke();
+        ctx.fillStyle = 'rgba(20,20,20,0.1)';
+        ctx.fill();
     }
 
     printTest = function(){
