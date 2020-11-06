@@ -106,8 +106,9 @@ function UTIL_calculateHourByDegree(degree){
 function UTIL_getDegreeFromPoints(xPosition, yPosition, newXPosition, newYPosition){
     let triangleX = xPosition - newXPosition;
     let triangleY = yPosition - newYPosition;
-    let isXNegative = triangleX <= -1;
-    let isYNegative = triangleY <= -1;
+    
+    let isXNegative = triangleX < 1;
+    let isYNegative = triangleY < 1;
     
     let isXClose = triangleX < (playersVisionDistance/2) || triangleX < ((playersVisionDistance/2)*-1);
     let isYClose = triangleY < (playersVisionDistance/2) || triangleY < ((playersVisionDistance/2)*-1);
