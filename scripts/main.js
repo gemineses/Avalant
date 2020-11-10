@@ -3,9 +3,10 @@
 function startGame() {
     setCharacters();
     isRequiredPaintMap = true;
-	generateMap();
+    generateMap();
     gameArea.start();
-	startQuest(quests.login)
+    startQuest(quests.login);
+    uiBoxes_generateUIBoxes();
 }
 
 

@@ -9,6 +9,14 @@ canvas {
 	position: absolute; 
 }
 #ui-layer { 
+	z-index: 4; 
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+}
+#mouse-layer { 
 	z-index: 3; 
 	top: 0;
 	left: 0;
