@@ -44,8 +44,8 @@ PATCH:
 - Cone classes and logic
 
 11/9/2020
--Redesign on map (with types and acceleration)
--Added box to show details when you click on any screen position
--Added block on mouse over
--Added cone view for players
--Added new layer for UI 
+- Redesign on map (with types and acceleration)
+- Added box to show details when you click on any screen position
+- Added block on mouse over
+- Added cone view for players
+- Added new layer for UI 
