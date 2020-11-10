@@ -52,3 +52,4 @@ quests = {};
 var playerLimitGameBox = [200,200]; // Max Pixels size of the center of the game area to move the player before than move the scenario
 /*END PLAYER IN GAME CONFIGURATION*/
 
+var playersVisionDistance = 50;

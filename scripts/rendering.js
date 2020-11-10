@@ -45,20 +45,25 @@ function moveCharacters(){
 		}else{
 			player.StartMove();
 		}
-
+		
 		if(!player.IsMoving()) return 0;
 		tmpSpeed = player.GetSpeed(MAPPROCEDURE);
 
-		if(player.GetPositionX() > mousePosition.x){
-			movingTo.x = move(player.GetPositionX(), -1, tmpSpeed)
-		} else{
-			movingTo.x = move(player.GetPositionX(), 1, tmpSpeed)
+		if(distanceX > 1){
+			if(player.GetPositionX() > mousePosition.x){
+				movingTo.x = move(player.GetPositionX(), -1, tmpSpeed)
+			} else{
+				movingTo.x = move(player.GetPositionX(), 1, tmpSpeed)
+			}
 		}
+
 		
-		if(player.GetPositionY() > mousePosition.y){
-			movingTo.y = move(player.GetPositionY(), -1, tmpSpeed)
-		} else{
-			movingTo.y = move(player.GetPositionY(), 1, tmpSpeed)
+		if(distanceY > 1){
+			if(player.GetPositionY() > mousePosition.y){
+				movingTo.y = move(player.GetPositionY(), -1, tmpSpeed)
+			} else{
+				movingTo.y = move(player.GetPositionY(), 1, tmpSpeed)
+			}
 		}
 
 		player.generateObject(movingTo.x, movingTo.y);

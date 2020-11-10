@@ -10,6 +10,9 @@ class CharactersI {
     #isObjectReady = false;
     #isPlayable = false;
     #isRequiredMoveCharacter = false;
+    #visionRadarPosition = 90; // 360 degree
+    #visionRadarSpace = 90; // 360 degree
+    #visionRadarLenght = playersVisionDistance;
 
     constructor(ID, NAME){
         this.#id = ID;
@@ -68,21 +71,42 @@ class CharactersI {
             
             ctx.beginPath();
             ctx.arc(this.#positionX, this.#positionY,5,0,2*Math.PI);
+            ctx.closePath();
             ctx.fillStyle = "#F0EDCC";
             ctx.fill();
             ctx.stroke();
-
+            
             ctx.fillStyle = "black";
             ctx.font = 12 + "px Arial";
             ctx.fillText(this.#name, 
                 (this.#positionX - 12/2),
                 (this.#positionY - 12));
-        
+            
+            this.renderVision(ctx, this.#positionX, this.#positionY);
         }
         return false;
     }
 
-    
+    renderVision = function(ctx, positionX, positionY){
+        ctx.fillStyle = 'rgba(20,20,20,0.3)';
+        ctx.beginPath();
+
+        let position = UTIL_getDistanceByDegree(
+            UTIL_getDegreeFromPoints(positionX, positionY, mousePosition.x, mousePosition.y),
+             positionX, positionY, this.#visionRadarLenght);
+        
+        
+        ctx.lineTo(position.originalPosition.x, position.originalPosition.y);
+        ctx.lineTo(position.leftView.x, position.leftView.y);
+        ctx.lineTo(position.focusView.x, position.focusView.y);
+        ctx.lineTo(position.rightView.x, position.rightView.y);
+        ctx.closePath();
+        
+        ctx.stroke();
+        ctx.fillStyle = 'rgba(20,20,20,0.1)';
+        ctx.fill();
+    }
+
     printTest = function(){
         if(this.#isObjectReady){
             console.log('PON CUALQUIER MENSAJE AQUI');
