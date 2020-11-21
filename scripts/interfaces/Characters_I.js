@@ -14,6 +14,8 @@ class CharactersI {
     #visionRadarSpace = 90; // 360 degree
     #visionRadarLenght = playersVisionDistance;
 
+    #steps = 0;
+
     constructor(ID, NAME){
         this.#id = ID;
         this.#name = NAME;
@@ -120,6 +122,10 @@ class CharactersI {
         this.#isRequiredMoveCharacter = false; 
     }
     IsMoving = function(){
+        this.#steps++;
+        if(this.#steps > stepsToReloadField && this.#isRequiredMoveCharacter){
+            this.#steps = 0;
+        };
         return this.#isRequiredMoveCharacter; 
     }
 
