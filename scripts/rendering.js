@@ -46,7 +46,7 @@ function moveCharacters(){
 			player.StartMove();
 		}
 		
-		if(!player.IsMoving()) return 0;
+		if(!player.IsMoving(MAPPROCEDURE.mapCompleted)) return 0;
 		tmpSpeed = player.GetSpeed(MAPPROCEDURE);
 
 		if(distanceX > 1){

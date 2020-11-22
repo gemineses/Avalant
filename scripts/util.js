@@ -127,3 +127,7 @@ function UTIL_getDegreeFromPoints(xPosition, yPosition, newXPosition, newYPositi
 
     return degree;
 }
+
+function UTIL_getMapTypeSizeByCharacter(map, xPosition, yPosition){
+    return map[Math.floor(xPosition/10)][Math.floor(yPosition/10)];
+}

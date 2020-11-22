@@ -15,6 +15,11 @@ class CharactersI {
     #visionRadarLenght = playersVisionDistance;
 
     #steps = 0;
+    #location = {
+        currentTerrain: '',
+        nearerTerrain: [], //3 axys, right, straight, left
+        charactersIdLocated: [] //list of characters id nearer of this character
+    }
 
     constructor(ID, NAME){
         this.#id = ID;
@@ -31,7 +36,7 @@ class CharactersI {
         if(this.validateObjectReadyToBePrinted){
             let groundSpeed = 1;
             if(map != undefined){
-                let mapType = map.mapCompleted[Math.floor(this.#positionX/10)][Math.floor(this.#positionY/10)];
+                let mapType = UTIL_getMapTypeSizeByCharacter(map, this.#positionX, this.#positionY);
                 groundSpeed = mapType.speedReduction;
             }
             return this.#speed * groundSpeed;
@@ -121,14 +126,21 @@ class CharactersI {
     StopMove = function(){ 
         this.#isRequiredMoveCharacter = false; 
     }
-    IsMoving = function(){
+    IsMoving = function(map){
         this.#steps++;
         if(this.#steps > stepsToReloadField && this.#isRequiredMoveCharacter){
             this.#steps = 0;
         };
+        this.reloadMind(map);
         return this.#isRequiredMoveCharacter; 
     }
 
+    reloadMind = function(map){
+        let currentTerrain = UTIL_getMapTypeSizeByCharacter(map, this.#positionX, this.#positionY);
+        this.#location.currentTerrain = currentTerrain;
+        //this.#location.nearerTerrain = nearerTerrain;
+        //this.#location.charactersIdLocated = charactersIdLocated;
+    }
 
 }
 
