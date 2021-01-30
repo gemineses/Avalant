@@ -7,55 +7,70 @@
 <link rel="stylesheet" href="style/bootstrap.css">
 </head>
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col-5">
-              Play
+    <div id="avalant-index">
+        <div class="container">
+            <div class="row index-header">
+                <div class="col-5">
+                Play
+                </div>
+                <div class="col-1">
+                !
+                </div>
+                <div class="col-2">
+                Home
+                </div>
+                <div class="col-2">
+                    TFT
+                </div>
+                <div class="col-2">
+                    CLASH
+                </div>
             </div>
-            <div class="col-1">
-              !
+            <div class="row index-menu-bar">
+                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link active" id="pills-overview-tab" data-bs-toggle="pill" href="#pills-overview" role="tab" aria-controls="pills-overview" aria-selected="true">Overview</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="pills-videos-tab" data-bs-toggle="pill" href="#pills-videos" role="tab" aria-controls="pills-videos" aria-selected="false">Videos</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="pills-aboutus-tab" data-bs-toggle="pill" href="#pills-aboutus" role="tab" aria-controls="pills-aboutus" aria-selected="false">About us</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="pills-patchNotes-tab" data-bs-toggle="pill" href="#pills-patchNotes" role="tab" aria-controls="pills-patchNotes" aria-selected="false">Patch Notes</a>
+                    </li>
+                </ul>
+                <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active overview index-main-content" id="pills-overview" role="tabpanel" aria-labelledby="pills-overview-tab">
+                        {{menuBar.overview.text}}
+                    </div>
+                    <div class="tab-pane fade videos index-main-content" id="pills-videos" role="tabpanel" aria-labelledby="pills-videos-tab">
+                        {{menuBar.videos.text}}
+                    </div>
+                    <div class="tab-pane fade aboutus index-main-content" id="pills-aboutus" role="tabpanel" aria-labelledby="pills-aboutus-tab">
+                        {{menuBar.aboutus.text}}
+                    </div>
+                    <div class="tab-pane fade patchnotes index-main-content" id="pills-patchNotes" role="tabpanel" aria-labelledby="pills-patchNotes-tab">
+                        {{menuBar.patchNotes.text}}
+                    </div>
+                </div>
             </div>
-            <div class="col-2">
-              Home
-            </div>
-            <div class="col-2">
-                TFT
-            </div>
-            <div class="col-2">
-                CLASH
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-3">
-              Overview
-            </div>
-            <div class="col-3">
-              Videos
-            </div>
-            <div class="col-3">
-              About us
-            </div>
-            <div class="col-3">
-                Patch Notes
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-              FULL DESCRIPTION AND IMAGES
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-4">
-                VIDEOS
-            </div>
-            <div class="col-4">
-                VIDEOS
-            </div>
-            <div class="col-4">
-                VIDEOS
+            <div class="row index-media">
+                <div class="col-4">
+                    VIDEOS
+                </div>
+                <div class="col-4">
+                    VIDEOS
+                </div>
+                <div class="col-4">
+                    VIDEOS
+                </div>
             </div>
         </div>
     </div>
 </body>
 <script src="scripts/bootstrap.js"></script>
+<script src="scripts/index/vue.js"></script>
+<script src="scripts/index/main.js"></script>
 </html>
