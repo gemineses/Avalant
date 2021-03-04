@@ -1,11 +1,21 @@
 $(document).ready(function(){
-	var dataCalls = function(){
+	var setupControllerCall = function(){
 		$.ajax({
-			url: "https://resttesttest.com/", 
+			url: "https://localhost:44378/setup", 
+			crossDomain : true,
+			type: "get",
 			success: function(result){
-				quests.loaded = result;
+				if(result.responseType == 1){
+					let obj = result.responseObject;
+					groundsType = obj.groundTypes;
+
+					setTimeout(function(){
+						startGame();
+					}, 1000);
+				}
 			}
 		});	
 	}
-	dataCalls();
+
+	setupControllerCall();
 });

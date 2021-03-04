@@ -2,38 +2,7 @@
 
 var sizeMapX = gameAreaSetWidth/fontSizeMap; //how many grounds characters fit inside of x
 var sizeMapY = (gameAreaSetHeight/fontSizeMap)*2;//how many grounds characters fit inside of y
-var groundsType = [
-	{
-		name: "sand",
-		color: "#ffecb3",
-		speedReduction: 0.5
-	},
-	{
-		name: "water",
-		color: "#b3e6ff",
-		speedReduction: 0.3
-	},
-	{
-		name: "grass",
-		color: "#009900",
-		speedReduction: 1
-	},
-	{
-		name: "fire",
-		color: "#F00",
-		speedReduction: 0.01
-	},
-	{
-		name: "rock",
-		color: "#CCC",
-		speedReduction: 0.7
-	},
-	{
-		name: "space",
-		color: "#000",
-		speedReduction: 0.01
-	}
-	]
+
 	/*MAX 2000 px x 2000px*/
 function generateMap(){
 	// TODO: CALL SERVICE

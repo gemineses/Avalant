@@ -53,3 +53,9 @@ var playerLimitGameBox = [200,200]; // Max Pixels size of the center of the game
 /*END PLAYER IN GAME CONFIGURATION*/
 
 var playersVisionDistance = 50;
+
+
+
+
+//Data Called from webservices
+var groundsType = [];
