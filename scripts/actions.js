@@ -83,9 +83,9 @@ function move_cursor(e){
 		y : (e.clientY - rect.top) / 10
 	}
 
-	if((Math.floor(mousePosition.x) < MAPPROCEDURE.mapCompleted.length) 
-		&& Math.floor(mousePosition.y) < MAPPROCEDURE.mapCompleted[0].length) {
-			display_PaintMouseOver(Math.floor(mousePosition.x), Math.floor(mousePosition.y), MAPPROCEDURE.mapCompleted[Math.floor(mousePosition.x)][Math.floor(mousePosition.y)]);		
+	if((Math.floor(mousePosition.x) < MAPPROCEDURE.map.length) 
+		&& Math.floor(mousePosition.y) < MAPPROCEDURE.map[0].length) {
+			display_PaintMouseOver(Math.floor(mousePosition.x), Math.floor(mousePosition.y), MAPPROCEDURE.map[Math.floor(mousePosition.x)][Math.floor(mousePosition.y)]);		
 		}
 }
 

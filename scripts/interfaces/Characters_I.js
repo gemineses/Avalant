@@ -29,8 +29,8 @@ class CharactersI {
         if(this.validateObjectReadyToBePrinted){
             let groundSpeed = 1;
             if(map != undefined){
-                let mapType = map.mapCompleted[Math.floor(this.#positionX/10)][Math.floor(this.#positionY/10)];
-                groundSpeed = mapType.speedReduction;
+                let mapType = map.map[Math.floor(this.#positionX/10)][Math.floor(this.#positionY/10)];
+                groundSpeed = mapType.groundType.speedReduction;
             }
             return this.#speed * groundSpeed;
         } 

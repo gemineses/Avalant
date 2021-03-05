@@ -51,7 +51,7 @@ function uiBoxes_GetSelectionType(e){
     }
 
     selectionBox.type = 'field';
-    selectionBox.content = MAPPROCEDURE.mapCompleted[mousePosition.x][mousePosition.y];
+    selectionBox.content = MAPPROCEDURE.map[mousePosition.x][mousePosition.y];
     return selectionBox;
 }
 
@@ -68,9 +68,9 @@ function uiBoxes_PrintField(selectionType){
     UIContext = gameArea.canvasUIContext;
     UIContext.rect(10,10, 50, 50);
     UIContext.stroke();
-    UIContext.fillStyle = selectionType.content.groundColor;
+    UIContext.fillStyle = selectionType.content.groundType.color;
     UIContext.fillRect(10,10, 50, 50);
     UIContext.font = "18px Arial";
     UIContext.fillStyle = "#000";
-    UIContext.fillText(selectionType.content.groundsType, 70, 25);
+    UIContext.fillText(selectionType.content.groundType.name, 70, 25);
 }

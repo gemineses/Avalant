@@ -56,6 +56,16 @@ var playersVisionDistance = 50;
 
 
 
-
+//--------------------------------------WEB SERVICES--------------------------------------------------------------
 //Data Called from webservices
 var groundsType = [];
+var MAPPROCEDURE = {};
+
+//----------------------------------END-WEB SERVICES--------------------------------------------------------------
+
+
+
+/*Steps Units: with 1000 steps units require 16.6 minutes to cross all the map at 1 point of speed*/
+var sizeMapX = gameAreaSetWidth/fontSizeMap; //how many grounds characters fit inside of x
+var sizeMapY = (gameAreaSetHeight/fontSizeMap)*2;//how many grounds characters fit inside of y
+/*MAX 2000 px x 2000px*/

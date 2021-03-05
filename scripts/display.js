@@ -61,7 +61,7 @@ function loadContent(){
 	gameArea.clear.mouse = function(){
 		gameArea.canvasMouseContext.clearRect(0, 0, gameArea.width, gameArea.height);
 	}
-	hardMove(MAPPROCEDURE.checkpoint.x, MAPPROCEDURE.checkpoint.y);
+	hardMove(MAPPROCEDURE.checkPoint.x, MAPPROCEDURE.checkPoint.y);
 }
 
 /*Eternal Looping 3:)*/
@@ -133,11 +133,11 @@ function paintMap(){
 		ctx = gameArea.canvasBackgroundContext;
 		ctx.font = fontSizeMap + "px Arial";
 		let color = '';
-		for(var indexMapX = 0; indexMapX < MAPPROCEDURE.mapCompleted.length; indexMapX++){
-			for(var indexMapY = 0; indexMapY < MAPPROCEDURE.mapCompleted[0].length; indexMapY++){
+		for(var indexMapX = 0; indexMapX < MAPPROCEDURE.map.length; indexMapX++){
+			for(var indexMapY = 0; indexMapY < MAPPROCEDURE.map[0].length; indexMapY++){
 				let x1 = indexMapX * 10;
 				let y1 = indexMapY * 10;
-				ctx.fillStyle = MAPPROCEDURE.mapCompleted[indexMapX][indexMapY].groundColor;
+				ctx.fillStyle = MAPPROCEDURE.map[indexMapX][indexMapY].groundType.color;
 				ctx.fillRect(x1, y1, 10, 10);
 			}
 		}
