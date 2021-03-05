@@ -132,13 +132,12 @@ function paintMap(){
 		gameArea.clear.bg();
 		ctx = gameArea.canvasBackgroundContext;
 		ctx.font = fontSizeMap + "px Arial";
-		let color = '';
 		for(var indexMapX = 0; indexMapX < MAPPROCEDURE.map.length; indexMapX++){
 			for(var indexMapY = 0; indexMapY < MAPPROCEDURE.map[0].length; indexMapY++){
-				let x1 = indexMapX * 10;
-				let y1 = indexMapY * 10;
+				let x1 = indexMapX * fontSizeCharacters;
+				let y1 = indexMapY * fontSizeCharacters;
 				ctx.fillStyle = MAPPROCEDURE.map[indexMapX][indexMapY].groundType.color;
-				ctx.fillRect(x1, y1, 10, 10);
+				ctx.fillRect(x1, y1, fontSizeCharacters, fontSizeCharacters);
 			}
 		}
 		isRequiredPaintMap = false;
