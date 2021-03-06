@@ -155,26 +155,7 @@ function display_PaintMouseOver(x, y, groundType){
 
 }
 
-function printCharacters(){
-	if(isRequiredPaintCharacter){
-		gameArea.clear.game();
-		ctx = gameArea.canvasGameContext;
-		ctx.fillStyle = "black";
-		ctx.font = fontSizeCharacters + "px Arial";
-		for(var i = 0; i < charactersList.length; i++){
-			ctx.fillText("0", charactersList[i].x, charactersList[i].y);
-			ctx.fillText(charactersList[i].name, 
-				(charactersList[i].x - (fontSizeCharacters/2)),
-				(charactersList[i].y - fontSizeCharacters));
-		}	
-	}
-}
-
-function printRealObjects(canvasContext){
-	printPlayer(canvasContext);
-}
-
-function printPlayer(canvasContext){
+function printCharacters(canvasContext){
 	charactersList.forEach(function(player){
 		drawPlayer(player, canvasContext);
 	});
@@ -248,7 +229,7 @@ function paintUI(){
 function paintGame(){
 	//moveCharacters();
 	gameArea.clear.game();
-	printRealObjects(gameArea.canvasGameContext);
+	printCharacters(gameArea.canvasGameContext);
 }
 
 
