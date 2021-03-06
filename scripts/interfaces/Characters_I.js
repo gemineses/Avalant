@@ -19,11 +19,6 @@ class CharactersI {
         this.#name = NAME;
     }
     
-    /* Getters & Setters */
-    GetPositionX(){ if(this.validateObjectReadyToBePrinted) return this.#positionX; }
-    GetPositionY(){ if(this.validateObjectReadyToBePrinted) return this.#positionY; }
-    GetID(){ if(this.validateObjectReadyToBePrinted) return this.#id; }
-    GetName(){ if(this.validateObjectReadyToBePrinted) return this.#name; }
     
     GetSpeed(map){ 
         if(this.validateObjectReadyToBePrinted){
@@ -50,78 +45,7 @@ class CharactersI {
         this.#sprite = new SpriteI();
     }
 
-    makePlayable(){
-        this.#isPlayable = true;
-    }
 
-    validateObjectReadyToBePrinted = function(){
-        if(this.#positionX === undefined) this.#isObjectReady = false;
-        if(this.#positionX === undefined) this.#isObjectReady = false;
-        if(this.#speed === undefined) this.#isObjectReady = false;
-        //if(this.#sprite === undefined) this.#isObjectReady = false;
-        this.#isObjectReady = true;
-    }
-
-    
-    draw = function(ctx){
-        this.validateObjectReadyToBePrinted();
-        if(this.#isObjectReady){
-            ctx = gameArea.canvasGameContext;
-            
-            
-            ctx.beginPath();
-            ctx.arc(this.#positionX, this.#positionY,5,0,2*Math.PI);
-            ctx.closePath();
-            ctx.fillStyle = "#F0EDCC";
-            ctx.fill();
-            ctx.stroke();
-            
-            ctx.fillStyle = "black";
-            ctx.font = 12 + "px Arial";
-            ctx.fillText(this.#name, 
-                (this.#positionX - 12/2),
-                (this.#positionY - 12));
-            
-            this.renderVision(ctx, this.#positionX, this.#positionY);
-        }
-        return false;
-    }
-
-    renderVision = function(ctx, positionX, positionY){
-        ctx.fillStyle = 'rgba(20,20,20,0.3)';
-        ctx.beginPath();
-
-        let position = UTIL_getDistanceByDegree(
-            UTIL_getDegreeFromPoints(positionX, positionY, mousePosition.x, mousePosition.y),
-             positionX, positionY, this.#visionRadarLenght);
-        
-        
-        ctx.lineTo(position.originalPosition.x, position.originalPosition.y);
-        ctx.lineTo(position.leftView.x, position.leftView.y);
-        ctx.lineTo(position.focusView.x, position.focusView.y);
-        ctx.lineTo(position.rightView.x, position.rightView.y);
-        ctx.closePath();
-        
-        ctx.stroke();
-        ctx.fillStyle = 'rgba(20,20,20,0.1)';
-        ctx.fill();
-    }
-
-    printTest = function(){
-        if(this.#isObjectReady){
-            console.log('PON CUALQUIER MENSAJE AQUI');
-        }
-    }
-
-    StartMove = function(){ 
-        this.#isRequiredMoveCharacter = true; 
-    }
-    StopMove = function(){ 
-        this.#isRequiredMoveCharacter = false; 
-    }
-    IsMoving = function(){
-        return this.#isRequiredMoveCharacter; 
-    }
 
 
 }

@@ -4,17 +4,19 @@ var moving = {x: false, y: false}
 var charactersList = [];
 
 function setCharacters(){
-	for(characterIndex = 0; characterIndex < players.length; characterIndex++){
+	for(characterIndex = 0; characterIndex < CHARACTERS.length; characterIndex++){
 		charactersList.push({
-			x : players[characterIndex].GetPositionX(),
-			y : players[characterIndex].GetPositionY(),
-			name: players[characterIndex].GetName(),
-			speed: players[characterIndex].GetSpeed()
+			x : CHARACTERS[characterIndex].position.x,
+			y : CHARACTERS[characterIndex].position.y,
+			name: CHARACTERS[characterIndex].name,
+			speed: CHARACTERS[characterIndex].speed,
+			visionRadarLength: CHARACTERS[characterIndex].view.length,
+			isPlayable: CHARACTERS[characterIndex].isPlayable,
 			//cones: []
 		});
 	}
 }
-
+/*
 function hardMove(x, y){
 	charactersList[0].x = x
 	charactersList[0].y = y
@@ -73,4 +75,4 @@ function moveCharacters(){
 function move(caracter, upDown, speed){
 	return caracter + (speed * upDown)
 }
-
+*/

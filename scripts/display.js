@@ -61,7 +61,7 @@ function loadContent(){
 	gameArea.clear.mouse = function(){
 		gameArea.canvasMouseContext.clearRect(0, 0, gameArea.width, gameArea.height);
 	}
-	hardMove(MAPPROCEDURE.checkPoint.x, MAPPROCEDURE.checkPoint.y);
+	//hardMove(MAPPROCEDURE.checkPoint.x, MAPPROCEDURE.checkPoint.y);
 }
 
 /*Eternal Looping 3:)*/
@@ -175,10 +175,56 @@ function printRealObjects(canvasContext){
 }
 
 function printPlayer(canvasContext){
-	players.forEach(function(player){
-		player.draw(canvasContext);
+	charactersList.forEach(function(player){
+		drawPlayer(player, canvasContext);
 	});
 }
+
+drawPlayer = function(player, ctx){
+	ctx = gameArea.canvasGameContext;
+	
+	ctx.beginPath();
+	ctx.arc(player.x, player.y,5,0,2*Math.PI);
+	ctx.closePath();
+	ctx.fillStyle = "#F0EDCC";
+	ctx.fill();
+	ctx.stroke();
+	
+	ctx.fillStyle = "black";
+	ctx.font = 12 + "px Arial";
+	ctx.fillText(player.name, 
+		(player.x - 12/2),
+		(player.y - 12));
+	
+	renderVision(ctx, player.x, player.y, player.visionRadarLength, player.isPlayable);
+	
+	return false;
+}
+
+renderVision = function(ctx, positionX, positionY, visionRadarLength, isPlayable){
+	if(isPlayable){
+		ctx.fillStyle = 'rgba(20,20,20,0.3)';
+	}else{
+		ctx.fillStyle = 'rgba(20,20,20,0.5)';
+	}
+	ctx.beginPath();
+
+	let position = UTIL_getDistanceByDegree(
+		UTIL_getDegreeFromPoints(positionX, positionY, mousePosition.x, mousePosition.y),
+		 positionX, positionY, visionRadarLength);
+	
+	
+	ctx.lineTo(position.originalPosition.x, position.originalPosition.y);
+	ctx.lineTo(position.leftView.x, position.leftView.y);
+	ctx.lineTo(position.focusView.x, position.focusView.y);
+	ctx.lineTo(position.rightView.x, position.rightView.y);
+	ctx.closePath();
+	
+	ctx.stroke();
+	ctx.fillStyle = 'rgba(20,20,20,0.1)';
+	ctx.fill();
+}
+
 /* End of print Map */
 
 /*
@@ -200,7 +246,7 @@ function paintUI(){
 	
 }
 function paintGame(){
-	moveCharacters();
+	//moveCharacters();
 	gameArea.clear.game();
 	printRealObjects(gameArea.canvasGameContext);
 }

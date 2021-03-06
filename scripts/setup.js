@@ -58,8 +58,9 @@ var playersVisionDistance = 50;
 
 //--------------------------------------WEB SERVICES--------------------------------------------------------------
 //Data Called from webservices
-var groundsType = [];
+var GROUNDS_TYPES = [];
 var MAPPROCEDURE = {};
+var CHARACTERS = [];
 
 //----------------------------------END-WEB SERVICES--------------------------------------------------------------
 

@@ -7,8 +7,10 @@ $(document).ready(function(){
 			success: function(result){
 				if(result.responseType == 1){
 					let obj = result.responseObject;
-					groundsType = obj.groundTypes;
+					GROUNDS_TYPES = obj.groundTypes;
 					MAPPROCEDURE = obj.mapProcedure;
+					CHARACTERS = obj.characters;
+
 					setTimeout(function(){
 						startGame();
 					}, 1000);

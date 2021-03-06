@@ -5,9 +5,9 @@ function uiBoxes_generateUIBoxes(e){
         gameArea.clear.ui();
         UIContext = gameArea.canvasUIContext;
         UIContext.fillStyle = "#FFF";
-        UIContext.rect(0,0,150,70);
+        UIContext.rect(0,0,200,70);
         UIContext.fill();
-        UIContext.rect(0,0,150,70);
+        UIContext.rect(0,0,200,70);
         UIContext.stroke();
 
         let selectionType = uiBoxes_GetSelectionType(e);
@@ -40,12 +40,12 @@ function uiBoxes_GetSelectionType(e){
         content: {}
     }
 
-    for(indexPlayer = 0; indexPlayer< players.length; indexPlayer++){
-        let positionX = Math.floor(players[indexPlayer].GetPositionX()/10);
-        let positionY = Math.floor(players[indexPlayer].GetPositionY()/10);
+    for(indexPlayer = 0; indexPlayer< charactersList.length; indexPlayer++){
+        let positionX = Math.floor(charactersList[indexPlayer].x/10);
+        let positionY = Math.floor(charactersList[indexPlayer].y/10);
         if(mousePosition.x == positionX && mousePosition.y == positionY){
             selectionBox.type = 'players';
-            selectionBox.content = players[indexPlayer];
+            selectionBox.content = charactersList[indexPlayer];
             return selectionBox;
         }
     }
@@ -61,7 +61,7 @@ function uiBoxes_PrintPlayer(selectionType){
     UIContext.stroke();
     UIContext.font = "18px Arial";
     UIContext.fillStyle = "#000";
-    UIContext.fillText(selectionType.content.GetName(), 70, 25);
+    UIContext.fillText(selectionType.content.name, 70, 25);
 }
     
 function uiBoxes_PrintField(selectionType){
