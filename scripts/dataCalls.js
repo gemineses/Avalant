@@ -1,7 +1,8 @@
 $(document).ready(function(){
+	var myParam = location.search.split('username=')[1];
 	var setupControllerCall = function(){
 		$.ajax({
-			url: "https://localhost:44378/setup", 
+			url: "https://localhost:44378/setup?username="+myParam, 
 			crossDomain : true,
 			type: "get",
 			success: function(result){

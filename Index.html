@@ -1,0 +1,13 @@
+Name
+<input type="text" name="username" id="username"/>
+<input type="button" value="OK" onclick="goToAvalant()"/>
+<script>
+    function goToAvalant(){
+        let username = document.getElementById('username').value
+        if(username == ''){
+            alert('pon un usuario, no seas mamon wey');
+        }else{
+            location.href='Avalant.html?username='+username;
+        }   
+    }
+</script>

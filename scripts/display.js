@@ -177,7 +177,7 @@ drawPlayer = function(player, ctx){
 		(player.x - 12/2),
 		(player.y - 12));
 	
-	renderVision(ctx, player.x, player.y, player.visionRadarLength, player.isPlayable);
+	//renderVision(ctx, player.x, player.y, player.visionRadarLength, player.isPlayable);
 	
 	return false;
 }
