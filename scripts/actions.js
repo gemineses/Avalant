@@ -88,28 +88,3 @@ function move_cursor(e){
 			display_PaintMouseOver(Math.floor(mousePosition.x), Math.floor(mousePosition.y), MAPPROCEDURE.map[Math.floor(mousePosition.x)][Math.floor(mousePosition.y)]);		
 		}
 }
-
-/*QUEST ACTIONS*/
-function startQuest(quest){
-	for(index = 0; index<quest.actions.length; index++){
-		doAction(quest.actions[index].typeAction, quest.actions[index].values);
-	}
-}
-
-function doAction(typeAction, values){
-	switch(typeAction){
-		case "openChat":
-			addMessage(values);
-			isTyping = true;
-		break;
-	}
-}
-
-/*END QUEST ACTIONS*/
-
-
-/* ACTIONS MOUSE EVENTS DISPLAY */
-
-
-
-/* ACTION MOUSE EVENTS DISPLAY END*/
